@@ -19,6 +19,6 @@ class User < ApplicationRecord
     grant.room = 'BjarneDevelopment'
     token.add_grant(grant)
 
-    puts token.to_jwt
+    token.to_jwt
   end
 end
