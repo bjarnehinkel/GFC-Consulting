@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def gen_token
+
+  end
 end
