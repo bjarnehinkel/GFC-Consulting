@@ -1,17 +1,19 @@
+require 'twilio-ruby'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def gen_token
-    ACCOUNT_SID = ENV['TWILIO_ACCOUNT_SID']
-    API_KEY = ENV['TWILIO_API_SID']
-    API_SECRET = ENV['TWILIO_API_SECRET']
+  def self.gen_token
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    api_key = ENV['TWILIO_API_SID']
+    api_secret = ENV['TWILIO_API_SECRET']
 
     identity = 'bjarne-hinkel'
 
-    token = Twilio::JWT::AccessToken.new(ACCOUNT_SID, API_KEY, API_SECRET, [], identity: identity);
+    token = Twilio::JWT::AccessToken.new(account_sid, api_key, api_secret, [], identity: identity);
 
     grant = Twilio::JWT::AccessToken::VideoGrant.new
     grant.room = 'BjarneDevelopment'
